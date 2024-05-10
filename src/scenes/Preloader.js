@@ -36,17 +36,12 @@ export class Preloader extends Scene {
 
     this.load.image("sky", "sky.png");
     this.load.image("gameLogo", "LogoGame.png");
-    //this.load.image('star', 'star.png');
-    //this.load.image('bomb', 'bomb.png');
-    //this.load.image('heart', 'heart.png');
+    this.load.image("gameBackGround", "BackGroundGame.png");
     this.load.spritesheet("water", "Water.png", {
       frameWidth: 152,
       frameHeight: 304,
     });
-    this.load.spritesheet("waterEnd", "waterEnd.png", {
-      frameWidth: 419,
-      frameHeight: 171,
-    });
+
     this.load.spritesheet("grifo", "grifo.png", {
       frameWidth: 619,
       frameHeight: 598,
