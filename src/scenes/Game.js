@@ -26,6 +26,8 @@ var diezOchotrayecto = false;
 var diezNuevetrayecto = false;
 var veintetrayecto = false;
 var finalTrayecto = false;
+//
+var seMueveElAgua = false;
 
 var backgroundMusic;
 var musicaActivada = true;
@@ -114,186 +116,395 @@ export class Game extends Scene {
     spritePipeInicio.setScale(0.35);
 
     //containers pipe 1
-    const containerPipe1 = this.add.container(110, 50);
-    containerPipe1.angle = 0 /*0,180*/; // Girar el sprite
-    if (containerPipe1.angle == 180 || containerPipe1.angle == 0) {
-      primerTrayecto = true;
-    }
-    //add all to container
-    containerPipe1.add(spritePipePrimero);
+    //this.crearContainer(containerPipe1, 110, 50, 0, 180, primerTrayecto);
+    this.containerPipe1 = this.add.container(110, 50);
+    this.containerPipe1.angle = 0 /*0,180*/; // Girar el sprite
+
+    //add all to container and iteractive
+    this.containerPipe1.add(spritePipePrimero);
+    this.containerPipe1.setSize(60, 60);
+    this.containerPipe1.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe1.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe1);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 2
-    const containerPipe2 = this.add.container(200, 50);
-    containerPipe2.angle = 0 /*0*/; // Girar el sprite
-    if (containerPipe2.angle == 0) {
-      segundoTrayecto = true;
-    }
+    this.containerPipe2 = this.add.container(200, 50);
+    this.containerPipe2.angle = 0 /*0*/; // Girar el sprite
+
     //add all to container
-    containerPipe2.add(spritePipeSegundo);
+    this.containerPipe2.add(spritePipeSegundo);
+    this.containerPipe2.setSize(60, 60);
+    this.containerPipe2.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe2.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe2);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 3
-    const containerPipe3 = this.add.container(200, 140);
-    containerPipe3.angle = 180 /*180*/; // Girar el sprite
-    if (containerPipe3.angle == 180) {
-      tercerTrayecto = true;
-    }
+    this.containerPipe3 = this.add.container(200, 140);
+    this.containerPipe3.angle = -180 /*-180*/; // Girar el sprite
+
     //add all to container
-    containerPipe3.add(spritePipeTercero);
+    this.containerPipe3.add(spritePipeTercero);
+    this.containerPipe3.setSize(60, 60);
+    this.containerPipe3.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe3.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe3);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 4
-    const containerPipe4 = this.add.container(290, 50);
-    containerPipe4.angle = 0 /*0*/; // Girar el sprite
-    if (containerPipe4.angle == 0) {
-      cuatroTrayecto = true;
-    }
+    this.containerPipe4 = this.add.container(290, 50);
+    this.containerPipe4.angle = 0 /*0*/; // Girar el sprite
+
     //add all to container
-    containerPipe4.add(spritePipeCuarto);
+    this.containerPipe4.add(spritePipeCuarto);
+    this.containerPipe4.setSize(60, 60);
+    this.containerPipe4.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe4.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe4);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 5
-    const containerPipe5 = this.add.container(290, 140);
-    containerPipe5.angle = 90 /*90*/; // Girar el sprite
-    if (containerPipe5.angle == 90) {
-      quintoTrayecto = true;
-    }
+    this.containerPipe5 = this.add.container(290, 140);
+    this.containerPipe5.angle = 90 /*90*/; // Girar el sprite
+
     //add all to container
-    containerPipe5.add(spritePipeQuinto);
+    this.containerPipe5.add(spritePipeQuinto);
+    this.containerPipe5.setSize(60, 60);
+    this.containerPipe5.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe5.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe5);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 6
-    const containerPipe6 = this.add.container(290, 230);
-    containerPipe6.angle = 90 /*90*/; // Girar el sprite
-    if (containerPipe6.angle == 90) {
-      sextotrayecto = true;
-    }
+    this.containerPipe6 = this.add.container(290, 230);
+    this.containerPipe6.angle = 90 /*90*/; // Girar el sprite
+
     //add all to container
-    containerPipe6.add(spritePipeSexto);
+    this.containerPipe6.add(spritePipeSexto);
+    this.containerPipe6.setSize(60, 60);
+    this.containerPipe6.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe6.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe6);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 7
-    const containerPipe7 = this.add.container(290, 320);
-    containerPipe7.angle = 180 /*180*/; // Girar el sprite
-    if (containerPipe7.angle == 180) {
-      septimotrayecto = true;
-    }
+    this.containerPipe7 = this.add.container(290, 320);
+    this.containerPipe7.angle = 180 /*180*/; // Girar el sprite
+
     //add all to container
-    containerPipe7.add(spritePipeSeptimo);
+    this.containerPipe7.add(spritePipeSeptimo);
+    this.containerPipe7.setSize(60, 60);
+    this.containerPipe7.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe7.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe7);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 8
-    const containerPipe8 = this.add.container(380, 320);
-    containerPipe8.angle = 90 /*90*/; // Girar el sprite
-    if (containerPipe8.angle == 90) {
-      octavotrayecto = true;
-    }
+    this.containerPipe8 = this.add.container(380, 320);
+    this.containerPipe8.angle = 90 /*90*/; // Girar el sprite
+
     //add all to container
-    containerPipe8.add(spritePipeOctavo);
+    this.containerPipe8.add(spritePipeOctavo);
+    this.containerPipe8.setSize(60, 60);
+    this.containerPipe8.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe8.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe8);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 9
-    const containerPipe9 = this.add.container(380, 230);
-    containerPipe9.angle = -90 /*-90*/; // Girar el sprite
-    if (containerPipe9.angle == -90) {
-      novenotrayecto = true;
-    }
+    this.containerPipe9 = this.add.container(380, 230);
+    this.containerPipe9.angle = -90 /*-90*/; // Girar el sprite
+
     //add all to container
-    containerPipe9.add(spritePipeNoveno);
+    this.containerPipe9.add(spritePipeNoveno);
+    this.containerPipe9.setSize(60, 60);
+    this.containerPipe9.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe9.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe9);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 10
-    const containerPipe10 = this.add.container(380, 140);
-    containerPipe10.angle = -90 /*-90*/; // Girar el sprite
-    if (containerPipe10.angle == -90) {
-      decimotrayecto = true;
-    }
+    this.containerPipe10 = this.add.container(380, 140);
+    this.containerPipe10.angle = -90 /*-90*/; // Girar el sprite
+
     //add all to container
-    containerPipe10.add(spritePipeDecimo);
+    this.containerPipe10.add(spritePipeDecimo);
+    this.containerPipe10.setSize(60, 60);
+    this.containerPipe10.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe10.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe10);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 11
-    const containerPipe11 = this.add.container(470, 140);
-    containerPipe11.angle = 0 /*0*/; // Girar el sprite
-    if (containerPipe11.angle == 0) {
-      onceavotrayecto = true;
-    }
+    this.containerPipe11 = this.add.container(470, 140);
+    this.containerPipe11.angle = 0 /*0*/; // Girar el sprite
+
     //add all to container
-    containerPipe11.add(spritePipeOnceavo);
+    this.containerPipe11.add(spritePipeOnceavo);
+    this.containerPipe11.setSize(60, 60);
+    this.containerPipe11.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe11.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe11);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 12
-    const containerPipe12 = this.add.container(470, 230);
-    containerPipe12.angle = 90 /*90*/; // Girar el sprite
-    if (containerPipe12.angle == 90) {
-      doceavotrayecto = true;
-    }
+    this.containerPipe12 = this.add.container(470, 230);
+    this.containerPipe12.angle = 90 /*90*/; // Girar el sprite
+
     //add all to container
-    containerPipe12.add(spritePipeDoce);
+    this.containerPipe12.add(spritePipeDoce);
+    this.containerPipe12.setSize(60, 60);
+    this.containerPipe12.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe12.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe12);
+        console.log("pulsado");
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 13
-    const containerPipe13 = this.add.container(470, 310);
-    containerPipe13.angle = 90 /*90*/; // Girar el sprite
-    if (containerPipe13.angle == 90) {
-      trecetrayecto = true;
-    }
+    this.containerPipe13 = this.add.container(470, 320);
+    this.containerPipe13.angle = 90 /*90*/; // Girar el sprite
+
     //add all to container
-    containerPipe13.add(spritePipeTrece);
+    this.containerPipe13.add(spritePipeTrece);
+    this.containerPipe13.setSize(60, 60);
+    this.containerPipe13.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe13.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe13);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 14
-    const containerPipe14 = this.add.container(470, 400);
-    containerPipe14.angle = 90 /*90*/; // Girar el sprite
-    if (containerPipe14.angle == 90) {
-      catorcetrayecto = true;
-    }
+    this.containerPipe14 = this.add.container(470, 410);
+    this.containerPipe14.angle = 90 /*90*/; // Girar el sprite
+
     //add all to container
-    containerPipe14.add(spritePipeCatorce);
+    this.containerPipe14.add(spritePipeCatorce);
+    this.containerPipe14.setSize(60, 60);
+    this.containerPipe14.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe14.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe14);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 15
-    const containerPipe15 = this.add.container(470, 490);
-    containerPipe15.angle = 180 /*180*/; // Girar el sprite
-    if (containerPipe15.angle == 180) {
-      quincetrayecto = true;
-    }
+    this.containerPipe15 = this.add.container(470, 500);
+    this.containerPipe15.angle = 180 /*180*/; // Girar el sprite
+
     //add all to container
-    containerPipe15.add(spritePipeQuince);
+    this.containerPipe15.add(spritePipeQuince);
+    this.containerPipe15.setSize(60, 60);
+    this.containerPipe15.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe15.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe15);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 16
-    const containerPipe16 = this.add.container(380, 490);
-    containerPipe16.angle = -90 /*-90*/; // Girar el sprite
-    if (containerPipe16.angle == -90) {
-      diezSeistrayecto = true;
-    }
+    this.containerPipe16 = this.add.container(380, 500);
+    this.containerPipe16.angle = -90 /*-90*/; // Girar el sprite
+
     //add all to container
-    containerPipe16.add(spritePipe16);
+    this.containerPipe16.add(spritePipe16);
+    this.containerPipe16.setSize(60, 60);
+    this.containerPipe16.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe16.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe16);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 17
-    const containerPipe17 = this.add.container(380, 580);
-    containerPipe17.angle = 180 /*180*/; // Girar el sprite
-    if (containerPipe17.angle == 180) {
-      diezSietetrayecto = true;
-    }
+    this.containerPipe17 = this.add.container(380, 590);
+    this.containerPipe17.angle = 180 /*180*/; // Girar el sprite
+
     //add all to container
-    containerPipe17.add(spritePipe17);
+    this.containerPipe17.add(spritePipe17);
+    this.containerPipe17.setSize(60, 60);
+    this.containerPipe17.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe17.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe17);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 18
-    const containerPipe18 = this.add.container(560, 490);
-    containerPipe18.angle = 0 /*0*/; // Girar el sprite
-    if (containerPipe18.angle == 0) {
-      diezOchotrayecto = true;
-    }
+    this.containerPipe18 = this.add.container(560, 500);
+    this.containerPipe18.angle = 0 /*0*/; // Girar el sprite
+
     //add all to container
-    containerPipe18.add(spritePipe18);
+    this.containerPipe18.add(spritePipe18);
+    this.containerPipe18.setSize(60, 60);
+    this.containerPipe18.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe18.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe18);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 19
-    const containerPipe19 = this.add.container(470, 580);
-    containerPipe19.angle = 0 /*180,0*/; // Girar el sprite
-    if (containerPipe19.angle == 180 || containerPipe19.angle == 0) {
-      diezNuevetrayecto = true;
-    }
+    this.containerPipe19 = this.add.container(470, 590);
+    this.containerPipe19.angle = 0 /*180,0*/; // Girar el sprite
+
     //add all to container
-    containerPipe19.add(spritePipe19);
+    this.containerPipe19.add(spritePipe19);
+    this.containerPipe19.setSize(60, 60);
+    this.containerPipe19.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe19.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe19);
+      },
+      this
+    );
     ///////////////////////////////
     //containers pipe 20
-    const containerPipe20 = this.add.container(560, 580);
-    containerPipe20.angle = 180 /*180*/; // Girar el sprite
-    if (containerPipe20.angle == 180) {
-      veintetrayecto = true;
-    }
+    this.containerPipe20 = this.add.container(560, 590);
+    this.containerPipe20.angle = 180 /*180*/; // Girar el sprite
+
     //add all to container
-    containerPipe20.add(spritePipe20);
+    this.containerPipe20.add(spritePipe20);
+    this.containerPipe20.setSize(60, 60);
+    this.containerPipe20.setInteractive();
+
+    // Escuchar el evento de clic en el contenedor
+    this.containerPipe20.on(
+      "pointerdown",
+      function (pointer) {
+        this.girarContainer(this.containerPipe20);
+      },
+      this
+    );
+
+    // boton
+    const Boton = this.add.sprite(750, 250, "boton");
+    Boton.setScale(0.6);
+    Boton.setInteractive();
+
+    // Agregar evento de clic al botón
+    Boton.on("pointerdown", () => {
+      seMueveElAgua = true;
+
+      // Escalar hacia arriba con una animación
+      this.tweens.add({
+        targets: Boton,
+        scaleX: 0.7,
+        scaleY: 0.7,
+        duration: 150,
+        ease: "Linear",
+        yoyo: true, // Hacer que el botón vuelva a su escala original después de agrandarse
+      });
+
+      this.comprobarCirquito();
+
+      console.log(this.containerPipe7.angle);
+      console.log(septimotrayecto);
+    });
+
+    /////////
     ///////////////////////////////
-    const containerPipeFinal = this.add.container(650, 580);
+    const containerPipeFinal = this.add.container(650, 590);
     containerPipeFinal.angle = 180 /*0,180*/; // Girar el sprite 90 grados en el sentido horario
     if (containerPipeFinal.angle == 0 || containerPipeFinal.angle == 180) {
       finalTrayecto = true;
@@ -303,7 +514,7 @@ export class Game extends Scene {
 
     //////////////////////// WATER /////////////////////////////
     // Crear un sprite usando el sprite sheet
-    this.water = this.add.sprite(750 + 45, 543 + 94, "water");
+    this.water = this.add.sprite(750 + 45, 543 + 111, "water");
     this.anims.create({
       key: "corriente",
       frames: this.anims.generateFrameNumbers("water", {
@@ -316,13 +527,10 @@ export class Game extends Scene {
     this.water.anims.play("corriente");
     this.water.setScale(0.25);
     this.water.setVisible(false);
-    if (LlegoTrayectoFinal) {
-      this.water.setVisible(true);
-    }
 
     ///////////////////////// GRIFO /////////////////////////////
     // Crear un sprite usando el sprite sheet
-    this.grifo = this.add.sprite(750, 555, "grifo"); // Posición inicial del sprite
+    this.grifo = this.add.sprite(750, 565, "grifo"); // Posición inicial del sprite
     this.grifo.setScale(0.2); // Reducir el tamaño del grifo
 
     // Definir una animación del grifo
@@ -335,10 +543,6 @@ export class Game extends Scene {
       frameRate: 10, // Velocidad de la animación
       repeat: -1, // -1 para repetir indefinidamente
     });
-    // Comenzar la animaciónÇ
-    if (LlegoTrayectoFinal) {
-      this.grifo.anims.play("open");
-    }
 
     //////////////////////// BAÑERA /////////////////////////////
     // Añadir el sprite a la escena
@@ -349,7 +553,132 @@ export class Game extends Scene {
     );
     spriteBañera.setScale(0.2);
 
-    ///////////////////////CONDICION/////////////////////////
+    ///////////////////////GIRAR CONTAINERS/////////////////////////
+    // Agregamos un evento de clic al contenedor
+  }
+
+  girarContainer(containerID) {
+    this.tweens.add({
+      targets: containerID,
+      angle: containerID.angle - 90,
+      duration: 500,
+      ease: "Linear",
+      onComplete: function () {
+        // Aquí puedes agregar cualquier lógica adicional que quieras ejecutar después de que se complete la animación
+      },
+    });
+  }
+
+  crearContainer(containerName, Pos1, Pos2, Angle1, Angle2, trayecto) {
+    //containerss
+    containerName = this.add.container(Pos1, Pos2);
+    containerName.angle = 0 /*0,180*/; // Girar el sprite
+    if (containerName.angle == Angle1 || containerName.angle == Angle2) {
+      trayecto = true;
+    }
+  }
+
+  comprobarCirquito() {
+    if (this.containerPipe1.angle == 180 || this.containerPipe1.angle == 0) {
+      primerTrayecto = true;
+    } else {
+      primerTrayecto = false;
+    }
+    if (this.containerPipe2.angle == 0) {
+      segundoTrayecto = true;
+    } else {
+      segundoTrayecto = false;
+    }
+    if (this.containerPipe3.angle == 180 || this.containerPipe3.angle == -180) {
+      tercerTrayecto = true;
+    } else {
+      tercerTrayecto = false;
+    }
+    if (this.containerPipe4.angle == 0) {
+      cuatroTrayecto = true;
+    } else {
+      cuatroTrayecto = false;
+    }
+    if (this.containerPipe5.angle == 90) {
+      quintoTrayecto = true;
+    } else {
+      quintoTrayecto = false;
+    }
+    if (this.containerPipe6.angle == 90) {
+      sextotrayecto = true;
+    } else {
+      sextotrayecto = false;
+    }
+    if (this.containerPipe7.angle == 180 || this.containerPipe7.angle == -180) {
+      septimotrayecto = true;
+    } else {
+      septimotrayecto = false;
+    }
+    if (this.containerPipe8.angle == 90) {
+      octavotrayecto = true;
+    } else {
+      octavotrayecto = false;
+    }
+    if (this.containerPipe9.angle == -90) {
+      novenotrayecto = true;
+    } else {
+      novenotrayecto = false;
+    }
+    if (this.containerPipe10.angle == -90) {
+      decimotrayecto = true;
+    } else {
+      decimotrayecto = false;
+    }
+    if (this.containerPipe11.angle == 0) {
+      onceavotrayecto = true;
+    } else {
+      onceavotrayecto = false;
+    }
+    if (this.containerPipe12.angle == 90) {
+      doceavotrayecto = true;
+    } else {
+      doceavotrayecto = false;
+    }
+    if (this.containerPipe13.angle == 90) {
+      trecetrayecto = true;
+    } else {
+      trecetrayecto = false;
+    }
+    if (this.containerPipe14.angle == 90) {
+      catorcetrayecto = true;
+    } else {
+      catorcetrayecto = false;
+    }
+    if (this.containerPipe15.angle == 180) {
+      quincetrayecto = true;
+    } else {
+      quincetrayecto = false;
+    }
+    if (this.containerPipe16.angle == -90) {
+      diezSeistrayecto = true;
+    } else {
+      diezSeistrayecto = false;
+    }
+    if (this.containerPipe17.angle == 180) {
+      diezSietetrayecto = true;
+    } else {
+      diezSietetrayecto = false;
+    }
+    if (this.containerPipe18.angle == 0) {
+      diezOchotrayecto = true;
+    } else {
+      diezOchotrayecto = false;
+    }
+    if (this.containerPipe19.angle == 180 || this.containerPipe19.angle == 0) {
+      diezNuevetrayecto = true;
+    } else {
+      diezNuevetrayecto = false;
+    }
+    if (this.containerPipe20.angle == 180) {
+      veintetrayecto = true;
+    } else {
+      veintetrayecto = false;
+    }
     if (
       primerTrayecto &&
       segundoTrayecto &&
@@ -372,19 +701,25 @@ export class Game extends Scene {
       diezNuevetrayecto &&
       veintetrayecto
     ) {
-      finalTrayecto = true;
+      LlegoTrayectoFinal = true;
+    }
+    if (LlegoTrayectoFinal) {
+      this.water.setVisible(true);
+      this.grifo.anims.play("open");
+      LlegoTrayectoFinal = false;
     }
   }
-
   //////////////////////////////////////////////////// UPDATE //////////////////////////////////////////////////
-  update(time, deltaTime) {}
+  update(time, deltaTime) {
+    ///////////////////////CONDICION/////////////////////////
+  }
 
   //////////////////////////////////////////////// OTHER FUNCTION ////////////////////////////////////////////
   //////////////////// GAME OVER /////////////////
   gameOver() {
     // Cambiar a la escena de Gameover y pasar la puntuación
     this.scene.start("GameOver", {
-      score: VicLoose,
+      VicLoose: VicLoose,
     });
     //backgroundMusic.stop();
     musicaActivada = false;
