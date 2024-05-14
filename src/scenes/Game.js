@@ -497,8 +497,8 @@ export class Game extends Scene {
       });
 
       this.comprobarCirquito();
-
-      console.log(this.containerPipe7.angle);
+      console.log("13 : " + this.containerPipe13.angle);
+      console.log("14 : " + this.containerPipe14.angle);
     });
 
     /////////
@@ -731,7 +731,7 @@ export class Game extends Scene {
         );
       }
     }
-    if (this.containerPipe6.angle == 90) {
+    if (this.containerPipe6.angle == 90 || this.containerPipe6.angle == -90) {
       sextotrayecto = true;
     } else {
       sextotrayecto = false;
@@ -806,6 +806,16 @@ export class Game extends Scene {
           this.containerPipe8.y + 61
         );
       }
+      if (
+        this.containerPipe8.angle == -90 ||
+        this.containerPipe8.angle == -180
+      ) {
+        this.waterSplash.setRotation(1.57);
+        this.waterSplash.setPosition(
+          this.containerPipe8.x - 19,
+          this.containerPipe8.y
+        );
+      }
     }
     if (this.containerPipe9.angle == -90) {
       novenotrayecto = true;
@@ -829,6 +839,13 @@ export class Game extends Scene {
         this.waterSplash.setPosition(
           this.containerPipe9.x - 61,
           this.containerPipe9.y
+        );
+      }
+      if (this.containerPipe9.angle == -180) {
+        this.waterSplash.setRotation(0);
+        this.waterSplash.setPosition(
+          this.containerPipe9.x,
+          this.containerPipe9.y + 27
         );
       }
     }
@@ -857,6 +874,16 @@ export class Game extends Scene {
           this.containerPipe10.y
         );
       }
+      if (
+        this.containerPipe10.angle == -180 ||
+        this.containerPipe10.angle == 90
+      ) {
+        this.waterSplash.setRotation(0);
+        this.waterSplash.setPosition(
+          this.containerPipe10.x,
+          this.containerPipe10.y + 23
+        );
+      }
     }
     if (this.containerPipe11.angle == 0) {
       onceavotrayecto = true;
@@ -877,11 +904,21 @@ export class Game extends Scene {
       segundoTrayecto &&
       tercerTrayecto
     ) {
-      if (this.containerPipe11.angle == -90) {
+      if (
+        this.containerPipe11.angle == -90 ||
+        this.containerPipe11.angle == -180
+      ) {
         this.waterSplash.setRotation(1.57);
         this.waterSplash.setPosition(
           this.containerPipe11.x - 25,
           this.containerPipe11.y
+        );
+      }
+      if (this.containerPipe11.angle == 90) {
+        this.waterSplash.setRotation(0);
+        this.waterSplash.setPosition(
+          this.containerPipe11.x,
+          this.containerPipe11.y - 64
         );
       }
     }
@@ -919,8 +956,15 @@ export class Game extends Scene {
           this.containerPipe12.y
         );
       }
+      if (this.containerPipe12.angle == -180) {
+        this.waterSplash.setRotation(1.57);
+        this.waterSplash.setPosition(
+          this.containerPipe12.x + 63,
+          this.containerPipe12.y
+        );
+      }
     }
-    if (this.containerPipe13.angle == 90) {
+    if (this.containerPipe13.angle == 90 || this.containerPipe13.angle == -90) {
       trecetrayecto = true;
     } else {
       trecetrayecto = false;
@@ -952,7 +996,7 @@ export class Game extends Scene {
         );
       }
     }
-    if (this.containerPipe14.angle == 90) {
+    if (this.containerPipe14.angle == 90 || this.containerPipe14.angle == -90) {
       catorcetrayecto = true;
     } else {
       catorcetrayecto = false;
