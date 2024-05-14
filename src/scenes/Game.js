@@ -498,8 +498,7 @@ export class Game extends Scene {
 
       this.comprobarCirquito();
 
-      console.log(this.containerPipe20.angle);
-      console.log(veintetrayecto);
+      console.log("this.containerPipe20.angle : " + this.containerPipe20.angle);
     });
 
     /////////
@@ -527,6 +526,29 @@ export class Game extends Scene {
     this.water.anims.play("corriente");
     this.water.setScale(0.25);
     this.water.setVisible(false);
+
+    ///////////////////////////
+    //Splash
+    this.waterSplash = this.add.sprite(0, -500, "waterSplash");
+
+    this.anims.create({
+      key: "corrienteS",
+      frames: this.anims.generateFrameNumbers("waterSplash", {
+        start: 0,
+        end: 5,
+      }), // Cambia estos valores según tu sprite sheet
+      frameRate: 15, // Velocidad de la animación
+      repeat: -1, // -1 para repetir indefinidamente
+    });
+    // this.waterSplash.setPosition(
+    //   this.containerPipe1.x - 28,
+    //   this.containerPipe1.y
+    // );
+
+    this.waterSplash.anims.play("corrienteS");
+    this.waterSplash.setScale(1.2);
+    this.waterSplash.setRotation(1.57); //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+    //this.waterSplash.setVisible(false);
 
     ///////////////////////// GRIFO /////////////////////////////
     // Crear un sprite usando el sprite sheet
@@ -584,70 +606,337 @@ export class Game extends Scene {
     } else {
       primerTrayecto = false;
     }
+    if (!primerTrayecto) {
+      this.waterSplash.setPosition(
+        this.containerPipe1.x - 28,
+        this.containerPipe1.y
+      );
+    }
     if (this.containerPipe2.angle == 0) {
       segundoTrayecto = true;
     } else {
       segundoTrayecto = false;
+    }
+    if (!segundoTrayecto && primerTrayecto) {
+      if (
+        this.containerPipe2.angle == 90 ||
+        this.containerPipe2.angle == -180
+      ) {
+        this.waterSplash.setRotation(0);
+        this.waterSplash.setPosition(
+          this.containerPipe2.x,
+          this.containerPipe2.y - 61
+        );
+      }
     }
     if (this.containerPipe3.angle == 180 || this.containerPipe3.angle == -180) {
       tercerTrayecto = true;
     } else {
       tercerTrayecto = false;
     }
+    if (!tercerTrayecto && primerTrayecto && segundoTrayecto) {
+      if (this.containerPipe3.angle == 90) {
+        this.waterSplash.setRotation(4.68);
+        this.waterSplash.setPosition(
+          this.containerPipe3.x - 61,
+          this.containerPipe3.y
+        );
+      }
+    }
+
     if (this.containerPipe4.angle == 0) {
       cuatroTrayecto = true;
     } else {
       cuatroTrayecto = false;
+    }
+    if (
+      !cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (this.containerPipe4.angle == 90) {
+        this.waterSplash.setRotation(0);
+        this.waterSplash.setPosition(
+          this.containerPipe4.x,
+          this.containerPipe4.y - 61
+        );
+      }
     }
     if (this.containerPipe5.angle == 90) {
       quintoTrayecto = true;
     } else {
       quintoTrayecto = false;
     }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (this.containerPipe5.angle == 0 || this.containerPipe5.angle == -180) {
+        this.waterSplash.setRotation(1.57);
+        this.waterSplash.setPosition(
+          this.containerPipe5.x + 61,
+          this.containerPipe5.y
+        );
+      }
+      if (this.containerPipe5.angle == -90) {
+        this.waterSplash.setRotation(1.57);
+        this.waterSplash.setPosition(
+          this.containerPipe5.x - 25,
+          this.containerPipe5.y
+        );
+      }
+    }
     if (this.containerPipe6.angle == 90) {
       sextotrayecto = true;
     } else {
       sextotrayecto = false;
+    }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (this.containerPipe6.angle == 0 || this.containerPipe6.angle == -180) {
+        this.waterSplash.setRotation(3.15);
+        this.waterSplash.setPosition(
+          this.containerPipe6.x,
+          this.containerPipe6.y - 29
+        );
+      }
     }
     if (this.containerPipe7.angle == 180 || this.containerPipe7.angle == -180) {
       septimotrayecto = true;
     } else {
       septimotrayecto = false;
     }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (this.containerPipe7.angle == 90) {
+        this.waterSplash.setRotation(4.68);
+        this.waterSplash.setPosition(
+          this.containerPipe7.x - 61,
+          this.containerPipe7.y
+        );
+      }
+    }
     if (this.containerPipe8.angle == 90) {
       octavotrayecto = true;
     } else {
       octavotrayecto = false;
+    }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !octavotrayecto &&
+      septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (this.containerPipe8.angle == 0) {
+        this.waterSplash.setRotation(3.15);
+        this.waterSplash.setPosition(
+          this.containerPipe8.x,
+          this.containerPipe8.y + 61
+        );
+      }
     }
     if (this.containerPipe9.angle == -90) {
       novenotrayecto = true;
     } else {
       novenotrayecto = false;
     }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !novenotrayecto &&
+      octavotrayecto &&
+      septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (this.containerPipe9.angle == 0 || this.containerPipe9.angle == 90) {
+        this.waterSplash.setRotation(4.68);
+        this.waterSplash.setPosition(
+          this.containerPipe9.x - 61,
+          this.containerPipe9.y
+        );
+      }
+    }
     if (this.containerPipe10.angle == -90) {
       decimotrayecto = true;
     } else {
       decimotrayecto = false;
+    }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !decimotrayecto &&
+      novenotrayecto &&
+      octavotrayecto &&
+      septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (this.containerPipe10.angle == 0) {
+        this.waterSplash.setRotation(4.68);
+        this.waterSplash.setPosition(
+          this.containerPipe10.x - 61,
+          this.containerPipe10.y
+        );
+      }
     }
     if (this.containerPipe11.angle == 0) {
       onceavotrayecto = true;
     } else {
       onceavotrayecto = false;
     }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !onceavotrayecto &&
+      decimotrayecto &&
+      novenotrayecto &&
+      octavotrayecto &&
+      septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (this.containerPipe11.angle == -90) {
+        this.waterSplash.setRotation(1.57);
+        this.waterSplash.setPosition(
+          this.containerPipe11.x - 25,
+          this.containerPipe11.y
+        );
+      }
+    }
     if (this.containerPipe12.angle == 90) {
       doceavotrayecto = true;
     } else {
       doceavotrayecto = false;
+    }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !doceavotrayecto &&
+      onceavotrayecto &&
+      decimotrayecto &&
+      novenotrayecto &&
+      octavotrayecto &&
+      septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (this.containerPipe12.angle == 0) {
+        this.waterSplash.setRotation(1.57);
+        this.waterSplash.setPosition(
+          this.containerPipe12.x + 61,
+          this.containerPipe12.y
+        );
+      }
+      if (this.containerPipe12.angle == -90) {
+        this.waterSplash.setRotation(1.57);
+        this.waterSplash.setPosition(
+          this.containerPipe12.x - 25,
+          this.containerPipe12.y
+        );
+      }
     }
     if (this.containerPipe13.angle == 90) {
       trecetrayecto = true;
     } else {
       trecetrayecto = false;
     }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !trecetrayecto &&
+      doceavotrayecto &&
+      onceavotrayecto &&
+      decimotrayecto &&
+      novenotrayecto &&
+      octavotrayecto &&
+      septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (
+        this.containerPipe13.angle == 0 ||
+        this.containerPipe13.angle == -180
+      ) {
+        this.waterSplash.setRotation(3.15);
+        this.waterSplash.setPosition(
+          this.containerPipe13.x,
+          this.containerPipe13.y - 27
+        );
+      }
+    }
     if (this.containerPipe14.angle == 90) {
       catorcetrayecto = true;
     } else {
       catorcetrayecto = false;
+    }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !catorcetrayecto &&
+      trecetrayecto &&
+      doceavotrayecto &&
+      onceavotrayecto &&
+      decimotrayecto &&
+      novenotrayecto &&
+      octavotrayecto &&
+      septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (
+        this.containerPipe14.angle == 0 ||
+        this.containerPipe14.angle == -180
+      ) {
+        this.waterSplash.setRotation(3.15);
+        this.waterSplash.setPosition(
+          this.containerPipe14.x,
+          this.containerPipe14.y - 27
+        );
+      }
     }
     if (
       this.containerPipe15.angle == 180 ||
@@ -657,10 +946,67 @@ export class Game extends Scene {
     } else {
       quincetrayecto = false;
     }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !quincetrayecto &&
+      catorcetrayecto &&
+      trecetrayecto &&
+      doceavotrayecto &&
+      onceavotrayecto &&
+      decimotrayecto &&
+      novenotrayecto &&
+      octavotrayecto &&
+      septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (
+        this.containerPipe15.angle == 90 ||
+        this.containerPipe15.angle == -90 ||
+        this.containerPipe15.angle == 0
+      ) {
+        this.waterSplash.setRotation(3.15);
+        this.waterSplash.setPosition(
+          this.containerPipe15.x,
+          this.containerPipe15.y + 61
+        );
+      }
+    }
     if (this.containerPipe16.angle == -90) {
       diezSeistrayecto = true;
     } else {
       diezSeistrayecto = false;
+    }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !diezSeistrayecto &&
+      quincetrayecto &&
+      catorcetrayecto &&
+      trecetrayecto &&
+      doceavotrayecto &&
+      onceavotrayecto &&
+      decimotrayecto &&
+      novenotrayecto &&
+      octavotrayecto &&
+      septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (this.containerPipe16.angle == -180) {
+        this.waterSplash.setRotation(0);
+        this.waterSplash.setPosition(
+          this.containerPipe16.x,
+          this.containerPipe16.y - 61
+        );
+      }
     }
     if (
       this.containerPipe17.angle == 180 ||
@@ -670,15 +1016,141 @@ export class Game extends Scene {
     } else {
       diezSietetrayecto = false;
     }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !diezSietetrayecto &&
+      diezSeistrayecto &&
+      quincetrayecto &&
+      catorcetrayecto &&
+      trecetrayecto &&
+      doceavotrayecto &&
+      onceavotrayecto &&
+      decimotrayecto &&
+      novenotrayecto &&
+      octavotrayecto &&
+      septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (this.containerPipe17.angle == 90) {
+        this.waterSplash.setRotation(4.68);
+        this.waterSplash.setPosition(
+          this.containerPipe17.x - 63,
+          this.containerPipe17.y
+        );
+      }
+    }
     if (this.containerPipe18.angle == 0) {
       diezOchotrayecto = true;
     } else {
       diezOchotrayecto = false;
     }
+
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !diezOchotrayecto &&
+      diezSietetrayecto &&
+      diezSeistrayecto &&
+      quincetrayecto &&
+      catorcetrayecto &&
+      trecetrayecto &&
+      doceavotrayecto &&
+      onceavotrayecto &&
+      decimotrayecto &&
+      novenotrayecto &&
+      octavotrayecto &&
+      septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (this.containerPipe18.angle == 90) {
+        this.waterSplash.setRotation(0);
+        this.waterSplash.setPosition(
+          this.containerPipe18.x,
+          this.containerPipe18.y - 63
+        );
+      }
+      if (this.containerPipe18.angle == -90) {
+        this.waterSplash.setRotation(1.57);
+        this.waterSplash.setPosition(
+          this.containerPipe18.x - 21,
+          this.containerPipe18.y
+        );
+      }
+    }
+    // if (
+    //   //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+    //   !diezOchotrayecto &&
+    //   diezNuevetrayecto &&
+    //   quincetrayecto &&
+    //   catorcetrayecto &&
+    //   trecetrayecto &&
+    //   doceavotrayecto &&
+    //   onceavotrayecto &&
+    //   decimotrayecto &&
+    //   novenotrayecto &&
+    //   octavotrayecto &&
+    //   septimotrayecto &&
+    //   sextotrayecto &&
+    //   quintoTrayecto &&
+    //   cuatroTrayecto &&
+    //   primerTrayecto &&
+    //   segundoTrayecto &&
+    //   tercerTrayecto
+    // ) {
+    //   if (this.containerPipe18.angle == -90) {
+    //     this.waterSplash.setRotation(1.57);
+    //     this.waterSplash.setPosition(
+    //       this.containerPipe18.x + 63,
+    //       this.containerPipe18.y
+    //     );
+    //   }
+    // }
     if (this.containerPipe19.angle == 180 || this.containerPipe19.angle == 0) {
       diezNuevetrayecto = true;
     } else {
       diezNuevetrayecto = false;
+    }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !diezNuevetrayecto &&
+      diezOchotrayecto &&
+      diezSietetrayecto &&
+      diezSeistrayecto &&
+      quincetrayecto &&
+      catorcetrayecto &&
+      trecetrayecto &&
+      doceavotrayecto &&
+      onceavotrayecto &&
+      decimotrayecto &&
+      novenotrayecto &&
+      octavotrayecto &&
+      septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (
+        this.containerPipe19.angle == 90 ||
+        this.containerPipe19.angle == -90
+      ) {
+        this.waterSplash.setRotation(1.57);
+        this.waterSplash.setPosition(
+          this.containerPipe19.x - 18,
+          this.containerPipe19.y
+        );
+      }
     }
     if (
       this.containerPipe20.angle == 180 ||
@@ -687,6 +1159,41 @@ export class Game extends Scene {
       veintetrayecto = true;
     } else {
       veintetrayecto = false;
+    }
+    if (
+      //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
+      !veintetrayecto &&
+      diezNuevetrayecto &&
+      diezOchotrayecto &&
+      diezSietetrayecto &&
+      diezSeistrayecto &&
+      quincetrayecto &&
+      catorcetrayecto &&
+      trecetrayecto &&
+      doceavotrayecto &&
+      onceavotrayecto &&
+      decimotrayecto &&
+      novenotrayecto &&
+      octavotrayecto &&
+      septimotrayecto &&
+      sextotrayecto &&
+      quintoTrayecto &&
+      cuatroTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (
+        this.containerPipe20.angle == 90 ||
+        this.containerPipe20.angle == -90 ||
+        this.containerPipe20.angle == 0
+      ) {
+        this.waterSplash.setRotation(3.15);
+        this.waterSplash.setPosition(
+          this.containerPipe20.x,
+          this.containerPipe20.y + 62
+        );
+      }
     }
     if (
       primerTrayecto &&
