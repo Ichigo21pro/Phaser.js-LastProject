@@ -498,8 +498,8 @@ export class Game extends Scene {
 
       this.comprobarCirquito();
 
-      console.log(this.containerPipe7.angle);
-      console.log(septimotrayecto);
+      console.log(this.containerPipe20.angle);
+      console.log(veintetrayecto);
     });
 
     /////////
@@ -649,7 +649,10 @@ export class Game extends Scene {
     } else {
       catorcetrayecto = false;
     }
-    if (this.containerPipe15.angle == 180) {
+    if (
+      this.containerPipe15.angle == 180 ||
+      this.containerPipe15.angle == -180
+    ) {
       quincetrayecto = true;
     } else {
       quincetrayecto = false;
@@ -659,7 +662,10 @@ export class Game extends Scene {
     } else {
       diezSeistrayecto = false;
     }
-    if (this.containerPipe17.angle == 180) {
+    if (
+      this.containerPipe17.angle == 180 ||
+      this.containerPipe17.angle == -180
+    ) {
       diezSietetrayecto = true;
     } else {
       diezSietetrayecto = false;
@@ -674,7 +680,10 @@ export class Game extends Scene {
     } else {
       diezNuevetrayecto = false;
     }
-    if (this.containerPipe20.angle == 180) {
+    if (
+      this.containerPipe20.angle == 180 ||
+      this.containerPipe20.angle == -180
+    ) {
       veintetrayecto = true;
     } else {
       veintetrayecto = false;
