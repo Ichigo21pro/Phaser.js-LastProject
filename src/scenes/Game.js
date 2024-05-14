@@ -775,6 +775,13 @@ export class Game extends Scene {
           this.containerPipe7.y
         );
       }
+      if (this.containerPipe7.angle == -90 || this.containerPipe7.angle == 0) {
+        this.waterSplash.setRotation(3.15);
+        this.waterSplash.setPosition(
+          this.containerPipe7.x,
+          this.containerPipe7.y - 19
+        );
+      }
     }
     if (this.containerPipe8.angle == 90) {
       octavotrayecto = true;
