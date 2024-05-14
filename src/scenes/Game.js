@@ -497,8 +497,7 @@ export class Game extends Scene {
       });
 
       this.comprobarCirquito();
-      console.log("13 : " + this.containerPipe13.angle);
-      console.log("14 : " + this.containerPipe14.angle);
+      console.log("17 : " + this.containerPipe17.angle);
     });
 
     /////////
@@ -1098,6 +1097,13 @@ export class Game extends Scene {
           this.containerPipe16.y - 61
         );
       }
+      if (this.containerPipe16.angle == 90 || this.containerPipe16.angle == 0) {
+        this.waterSplash.setRotation(4.68);
+        this.waterSplash.setPosition(
+          this.containerPipe16.x + 23,
+          this.containerPipe16.y
+        );
+      }
     }
     if (
       this.containerPipe17.angle == 180 ||
@@ -1132,6 +1138,16 @@ export class Game extends Scene {
         this.waterSplash.setPosition(
           this.containerPipe17.x - 63,
           this.containerPipe17.y
+        );
+      }
+      if (
+        this.containerPipe17.angle == 0 ||
+        this.containerPipe17.angle == -90
+      ) {
+        this.waterSplash.setRotation(3.15);
+        this.waterSplash.setPosition(
+          this.containerPipe17.x,
+          this.containerPipe17.y - 25
         );
       }
     }
@@ -1169,10 +1185,13 @@ export class Game extends Scene {
           this.containerPipe18.y - 63
         );
       }
-      if (this.containerPipe18.angle == -90) {
+      if (
+        this.containerPipe18.angle == -90 ||
+        this.containerPipe18.angle == -180
+      ) {
         this.waterSplash.setRotation(1.57);
         this.waterSplash.setPosition(
-          this.containerPipe18.x - 21,
+          this.containerPipe18.x - 23,
           this.containerPipe18.y
         );
       }
