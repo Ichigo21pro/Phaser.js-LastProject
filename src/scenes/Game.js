@@ -498,7 +498,7 @@ export class Game extends Scene {
 
       this.comprobarCirquito();
 
-      console.log("this.containerPipe20.angle : " + this.containerPipe20.angle);
+      console.log(this.containerPipe7.angle);
     });
 
     /////////
@@ -628,6 +628,13 @@ export class Game extends Scene {
           this.containerPipe2.y - 61
         );
       }
+      if (this.containerPipe2.angle == -90) {
+        this.waterSplash.setRotation(1.57);
+        this.waterSplash.setPosition(
+          this.containerPipe2.x - 24,
+          this.containerPipe2.y
+        );
+      }
     }
     if (this.containerPipe3.angle == 180 || this.containerPipe3.angle == -180) {
       tercerTrayecto = true;
@@ -642,6 +649,13 @@ export class Game extends Scene {
           this.containerPipe3.y
         );
       }
+      if (this.containerPipe3.angle == 0 || this.containerPipe3.angle == -90) {
+        this.waterSplash.setRotation(3.15);
+        this.waterSplash.setPosition(
+          this.containerPipe3.x,
+          this.containerPipe3.y - 23
+        );
+      }
     }
 
     if (this.containerPipe4.angle == 0) {
@@ -651,6 +665,25 @@ export class Game extends Scene {
     }
     if (
       !cuatroTrayecto &&
+      !quintoTrayecto &&
+      primerTrayecto &&
+      segundoTrayecto &&
+      tercerTrayecto
+    ) {
+      if (
+        this.containerPipe4.angle == -90 ||
+        this.containerPipe4.angle == -180
+      ) {
+        this.waterSplash.setRotation(1.57);
+        this.waterSplash.setPosition(
+          this.containerPipe4.x - 21,
+          this.containerPipe4.y
+        );
+      }
+    }
+    if (
+      !cuatroTrayecto &&
+      quintoTrayecto &&
       primerTrayecto &&
       segundoTrayecto &&
       tercerTrayecto
@@ -660,6 +693,13 @@ export class Game extends Scene {
         this.waterSplash.setPosition(
           this.containerPipe4.x,
           this.containerPipe4.y - 61
+        );
+      }
+      if (this.containerPipe4.angle == -90) {
+        this.waterSplash.setRotation(1.57);
+        this.waterSplash.setPosition(
+          this.containerPipe4.x + 63,
+          this.containerPipe4.y
         );
       }
     }
@@ -1086,34 +1126,6 @@ export class Game extends Scene {
         );
       }
     }
-    // if (
-    //   //1.57 "derecha" , 0 "arriba", 3.15 "abajo", 4.68 "Izquierda"
-    //   !diezOchotrayecto &&
-    //   diezNuevetrayecto &&
-    //   quincetrayecto &&
-    //   catorcetrayecto &&
-    //   trecetrayecto &&
-    //   doceavotrayecto &&
-    //   onceavotrayecto &&
-    //   decimotrayecto &&
-    //   novenotrayecto &&
-    //   octavotrayecto &&
-    //   septimotrayecto &&
-    //   sextotrayecto &&
-    //   quintoTrayecto &&
-    //   cuatroTrayecto &&
-    //   primerTrayecto &&
-    //   segundoTrayecto &&
-    //   tercerTrayecto
-    // ) {
-    //   if (this.containerPipe18.angle == -90) {
-    //     this.waterSplash.setRotation(1.57);
-    //     this.waterSplash.setPosition(
-    //       this.containerPipe18.x + 63,
-    //       this.containerPipe18.y
-    //     );
-    //   }
-    // }
     if (this.containerPipe19.angle == 180 || this.containerPipe19.angle == 0) {
       diezNuevetrayecto = true;
     } else {
