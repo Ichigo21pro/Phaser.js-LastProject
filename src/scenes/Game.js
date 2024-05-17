@@ -26,6 +26,7 @@ var diezOchotrayecto = false;
 var diezNuevetrayecto = false;
 var veintetrayecto = false;
 var tocoBoton = false;
+var animacionEnCurso = false;
 //
 var seMueveElAgua = false;
 
@@ -579,13 +580,15 @@ export class Game extends Scene {
   }
 
   girarContainer(containerID) {
-    if (!tocoBoton) {
+    if (!tocoBoton && !animacionEnCurso) {
+      animacionEnCurso = true; // Establecer la bandera en true al iniciar la animación
       this.tweens.add({
         targets: containerID,
         angle: containerID.angle - 90,
         duration: 500,
         ease: "Linear",
         onComplete: function () {
+          animacionEnCurso = false;
           // Aquí puedes agregar cualquier lógica adicional que quieras ejecutar después de que se complete la animación
         },
       });
