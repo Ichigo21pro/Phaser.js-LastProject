@@ -43,6 +43,7 @@ export class Preloader extends Scene {
     this.load.image("pipe_curvo", "pipe/14.png");
     this.load.image("pipe_3", "pipe/6.png");
     this.load.image("boton", "buttom.png");
+    this.load.image("handPointer", "handPointer.png");
 
     this.load.spritesheet("water", "Water.png", {
       frameWidth: 152,

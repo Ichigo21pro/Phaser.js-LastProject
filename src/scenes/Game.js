@@ -27,6 +27,7 @@ var diezNuevetrayecto = false;
 var veintetrayecto = false;
 var tocoBoton = false;
 var animacionEnCurso = false;
+var hacerTutorial = true;
 //
 var seMueveElAgua = false;
 
@@ -575,8 +576,70 @@ export class Game extends Scene {
     );
     spriteBañera.setScale(0.2);
 
-    ///////////////////////GIRAR CONTAINERS/////////////////////////
-    // Agregamos un evento de clic al contenedor
+    ///////////////////////   TUTORIAL   /////////////////////////
+
+    if (hacerTutorial) {
+      this.funcionTutorial();
+      hacerTutorial = false;
+    }
+  }
+
+  funcionTutorial() {
+    // Crear una gráfica para el overlay
+    const overlay = this.add.graphics();
+
+    // Rellenar el overlay con un color negro semi-transparente que cubre toda la pantalla
+    overlay.fillStyle(0x000000, 0.8).fillRect(0, 0, 1024, 768);
+
+    // Crear una gráfica para la máscara
+    const maskGraphics = this.make.graphics();
+
+    // Rellenar la máscara con color blanco y dibujar un círculo en la posición deseada
+    maskGraphics.fillStyle(0xffffff);
+    maskGraphics.fillCircle(390, 150, 60);
+
+    // Crear una máscara de bitmap usando la gráfica creada
+    const mask = new Phaser.Display.Masks.BitmapMask(this, maskGraphics);
+
+    // Invertir la alfa de la máscara para que el área del círculo sea transparente y el resto sea opaco
+    mask.invertAlpha = true;
+
+    // Aplicar la máscara al overlay
+    overlay.setMask(mask);
+
+    // Crear el sprite que señala el área a pulsar (por ejemplo, una flecha)
+    const pointerSprite = this.add.sprite(440, 260, "handPointer"); // Ajusta la posición y la clave del sprite según sea necesario
+    pointerSprite.setScale(0.4);
+    pointerSprite.setAngle(155);
+
+    // Agregar una animación al sprite (opcional)
+    this.tweens.add({
+      targets: pointerSprite,
+      y: pointerSprite.y - 20,
+      yoyo: true,
+      repeat: -1,
+      duration: 500,
+      ease: "Sine.easeInOut",
+    });
+
+    // Función para destruir la máscara y el sprite
+    const destruirTutorial = () => {
+      if (maskGraphics && maskGraphics.active) {
+        maskGraphics.destroy();
+      }
+      if (overlay && overlay.active) {
+        overlay.destroy();
+      }
+      if (pointerSprite && pointerSprite.active) {
+        pointerSprite.destroy();
+      }
+    };
+
+    // Añadir un input listener para detectar clics en la pantalla
+    this.input.on("pointerdown", destruirTutorial);
+
+    // Añadir una lógica para que la máscara desaparezca después de 10 segundos
+    this.time.delayedCall(15000, destruirTutorial);
   }
 
   girarContainer(containerID) {
