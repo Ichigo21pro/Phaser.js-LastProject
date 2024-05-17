@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 
-var VicLoose = 0;
+var VicLoose = false;
 var gameOver = false;
 var scoreTime;
 var tiempo = 0;
@@ -120,7 +120,7 @@ export class Game extends Scene {
     //containers pipe 1
     //this.crearContainer(containerPipe1, 110, 50, 0, 180, primerTrayecto);
     this.containerPipe1 = this.add.container(110, 50);
-    this.containerPipe1.angle = 0 /*0,180*/; // Girar el sprite
+    this.containerPipe1.angle = 90 /*0,180*/; // Girar el sprite
 
     //add all to container and iteractive
     this.containerPipe1.add(spritePipePrimero);
@@ -138,7 +138,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 2
     this.containerPipe2 = this.add.container(200, 50);
-    this.containerPipe2.angle = 0 /*0*/; // Girar el sprite
+    this.containerPipe2.angle = -90 /*0*/; // Girar el sprite
 
     //add all to container
     this.containerPipe2.add(spritePipeSegundo);
@@ -156,7 +156,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 3
     this.containerPipe3 = this.add.container(200, 140);
-    this.containerPipe3.angle = -180 /*-180*/; // Girar el sprite
+    this.containerPipe3.angle = 0 /*-180*/; // Girar el sprite
 
     //add all to container
     this.containerPipe3.add(spritePipeTercero);
@@ -174,7 +174,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 4
     this.containerPipe4 = this.add.container(290, 50);
-    this.containerPipe4.angle = 0 /*0*/; // Girar el sprite
+    this.containerPipe4.angle = 180 /*0*/; // Girar el sprite
 
     //add all to container
     this.containerPipe4.add(spritePipeCuarto);
@@ -192,7 +192,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 5
     this.containerPipe5 = this.add.container(290, 140);
-    this.containerPipe5.angle = 90 /*90*/; // Girar el sprite
+    this.containerPipe5.angle = -90 /*90*/; // Girar el sprite
 
     //add all to container
     this.containerPipe5.add(spritePipeQuinto);
@@ -228,7 +228,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 7
     this.containerPipe7 = this.add.container(290, 320);
-    this.containerPipe7.angle = 180 /*180*/; // Girar el sprite
+    this.containerPipe7.angle = -180 /*180*/; // Girar el sprite
 
     //add all to container
     this.containerPipe7.add(spritePipeSeptimo);
@@ -246,7 +246,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 8
     this.containerPipe8 = this.add.container(380, 320);
-    this.containerPipe8.angle = 90 /*90*/; // Girar el sprite
+    this.containerPipe8.angle = 0 /*90*/; // Girar el sprite
 
     //add all to container
     this.containerPipe8.add(spritePipeOctavo);
@@ -300,7 +300,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 11
     this.containerPipe11 = this.add.container(470, 140);
-    this.containerPipe11.angle = 0 /*0*/; // Girar el sprite
+    this.containerPipe11.angle = 180 /*0*/; // Girar el sprite
 
     //add all to container
     this.containerPipe11.add(spritePipeOnceavo);
@@ -318,7 +318,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 12
     this.containerPipe12 = this.add.container(470, 230);
-    this.containerPipe12.angle = 90 /*90*/; // Girar el sprite
+    this.containerPipe12.angle = -90 /*90*/; // Girar el sprite
 
     //add all to container
     this.containerPipe12.add(spritePipeDoce);
@@ -337,7 +337,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 13
     this.containerPipe13 = this.add.container(470, 320);
-    this.containerPipe13.angle = 90 /*90*/; // Girar el sprite
+    this.containerPipe13.angle = -90 /*90*/; // Girar el sprite
 
     //add all to container
     this.containerPipe13.add(spritePipeTrece);
@@ -373,7 +373,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 15
     this.containerPipe15 = this.add.container(470, 500);
-    this.containerPipe15.angle = 180 /*180*/; // Girar el sprite
+    this.containerPipe15.angle = -90 /*180*/; // Girar el sprite
 
     //add all to container
     this.containerPipe15.add(spritePipeQuince);
@@ -391,7 +391,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 16
     this.containerPipe16 = this.add.container(380, 500);
-    this.containerPipe16.angle = -90 /*-90*/; // Girar el sprite
+    this.containerPipe16.angle = 0 /*-90*/; // Girar el sprite
 
     //add all to container
     this.containerPipe16.add(spritePipe16);
@@ -409,7 +409,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 17
     this.containerPipe17 = this.add.container(380, 590);
-    this.containerPipe17.angle = 180 /*180*/; // Girar el sprite
+    this.containerPipe17.angle = 0 /*180*/; // Girar el sprite
 
     //add all to container
     this.containerPipe17.add(spritePipe17);
@@ -427,7 +427,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 18
     this.containerPipe18 = this.add.container(560, 500);
-    this.containerPipe18.angle = 0 /*0*/; // Girar el sprite
+    this.containerPipe18.angle = 90 /*0*/; // Girar el sprite
 
     //add all to container
     this.containerPipe18.add(spritePipe18);
@@ -445,7 +445,7 @@ export class Game extends Scene {
     ///////////////////////////////
     //containers pipe 19
     this.containerPipe19 = this.add.container(470, 590);
-    this.containerPipe19.angle = 0 /*180,0*/; // Girar el sprite
+    this.containerPipe19.angle = 90 /*180,0*/; // Girar el sprite
 
     //add all to container
     this.containerPipe19.add(spritePipe19);
@@ -501,7 +501,9 @@ export class Game extends Scene {
         this.comprobarCirquito();
       }
       tocoBoton = true;
-      console.log("17 : " + this.containerPipe17.angle);
+      this.time.delayedCall(3000, () => {
+        this.gameOver();
+      });
     });
 
     /////////
@@ -584,20 +586,42 @@ export class Game extends Scene {
     }
 
     //////////////////////  GAME OVER    //////////////////////
-    const CTAPhoto = this.add.sprite(500, 350, "CTAPhoto");
-    CTAPhoto.setScale(1.8);
+    this.CTAPhoto = this.add.sprite(500, 350, "CTAPhoto");
+    this.CTAPhoto.setScale(1.8);
     // Crear un botón de texto
-    const boton = this.add
-      .text(500, 400, "Volver", { fill: "#0f0" })
-      .setInteractive()
-      .on("pointerdown", () => {
-        // Acción cuando se hace clic en el botón
-        console.log("Botón clickeado!");
+    // boton
+    this.botonCTA = this.add.sprite(485, 500, "botonPLAY");
+
+    this.botonCTA.setScale(0.135);
+    this.botonCTA.setInteractive();
+
+    // Crear una variable de texto y añadirla a la escena
+    this.textoCTA = this.add.text(344, 210, "¡HAS GANADO!", {
+      fill: "#ffffff",
+      fontSize: "40px",
+      fontStyle: "bold",
+    });
+
+    // Agregar evento de clic al botón
+    this.botonCTA.on("pointerdown", () => {
+      // Escalar hacia arriba con una animación
+      this.tweens.add({
+        targets: this.botonCTA,
+        scaleX: 0.2,
+        scaleY: 0.2,
+        duration: 150,
+        ease: "Linear",
+        yoyo: true, // Hacer que el botón vuelva a su escala original después de agrandarse
       });
-    if (gameOver) {
-      this.gameOver();
-      gameOver = false;
-    }
+
+      // Redirigir a la URL deseada
+      this.time.delayedCall(1500, () => {
+        window.location.href = "https://www.desatascosjumbo.com/";
+      });
+    });
+    this.CTAPhoto.setVisible(false);
+    this.botonCTA.setVisible(false);
+    this.textoCTA.setVisible(false);
   }
 
   funcionTutorial() {
@@ -1391,12 +1415,26 @@ export class Game extends Scene {
   //////////////////////////////////////////////// OTHER FUNCTION ////////////////////////////////////////////
   //////////////////// GAME OVER /////////////////
   gameOver() {
-    // Cambiar a la escena de Gameover y pasar la puntuación
-    this.scene.start("GameOver", {
-      VicLoose: VicLoose,
+    if (gameOver) {
+      VicLoose = true;
+    } else {
+      VicLoose = false;
+    }
+    if (!VicLoose) {
+      this.textoCTA.setText("¡HAS PERDIDO!");
+      this.textoCTA.setStyle({ fontSize: "40px" });
+    }
+    this.textoCTA.setVisible(true);
+    this.CTAPhoto.setVisible(true);
+    this.botonCTA.setVisible(true);
+    this.time.delayedCall(4000, () => {
+      gameOver = false;
+      // Cambiar a la escena de Gameover y pasar la puntuación
+      this.scene.start("GameOver", {
+        VicLoose: VicLoose,
+      });
+      //backgroundMusic.stop();
+      musicaActivada = false;
     });
-    //backgroundMusic.stop();
-    musicaActivada = false;
-    VicLoose = 0;
   }
 }
