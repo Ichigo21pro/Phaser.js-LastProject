@@ -582,6 +582,22 @@ export class Game extends Scene {
       this.funcionTutorial();
       hacerTutorial = false;
     }
+
+    //////////////////////  GAME OVER    //////////////////////
+    const CTAPhoto = this.add.sprite(500, 350, "CTAPhoto");
+    CTAPhoto.setScale(1.8);
+    // Crear un botón de texto
+    const boton = this.add
+      .text(500, 400, "Volver", { fill: "#0f0" })
+      .setInteractive()
+      .on("pointerdown", () => {
+        // Acción cuando se hace clic en el botón
+        console.log("Botón clickeado!");
+      });
+    if (gameOver) {
+      this.gameOver();
+      gameOver = false;
+    }
   }
 
   funcionTutorial() {
@@ -1363,6 +1379,7 @@ export class Game extends Scene {
     if (LlegoTrayectoFinal) {
       this.water.setVisible(true);
       this.grifo.anims.play("open");
+      gameOver = true;
       LlegoTrayectoFinal = false;
     }
   }
