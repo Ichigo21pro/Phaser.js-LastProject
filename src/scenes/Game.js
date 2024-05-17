@@ -25,7 +25,7 @@ var diezSietetrayecto = false;
 var diezOchotrayecto = false;
 var diezNuevetrayecto = false;
 var veintetrayecto = false;
-var finalTrayecto = false;
+var tocoBoton = false;
 //
 var seMueveElAgua = false;
 
@@ -484,19 +484,21 @@ export class Game extends Scene {
 
     // Agregar evento de clic al botón
     Boton.on("pointerdown", () => {
-      seMueveElAgua = true;
+      if (!tocoBoton) {
+        seMueveElAgua = true;
+        // Escalar hacia arriba con una animación
+        this.tweens.add({
+          targets: Boton,
+          scaleX: 0.7,
+          scaleY: 0.7,
+          duration: 150,
+          ease: "Linear",
+          yoyo: true, // Hacer que el botón vuelva a su escala original después de agrandarse
+        });
 
-      // Escalar hacia arriba con una animación
-      this.tweens.add({
-        targets: Boton,
-        scaleX: 0.7,
-        scaleY: 0.7,
-        duration: 150,
-        ease: "Linear",
-        yoyo: true, // Hacer que el botón vuelva a su escala original después de agrandarse
-      });
-
-      this.comprobarCirquito();
+        this.comprobarCirquito();
+      }
+      tocoBoton = true;
       console.log("17 : " + this.containerPipe17.angle);
     });
 
@@ -504,9 +506,7 @@ export class Game extends Scene {
     ///////////////////////////////
     const containerPipeFinal = this.add.container(650, 590);
     containerPipeFinal.angle = 180 /*0,180*/; // Girar el sprite 90 grados en el sentido horario
-    if (containerPipeFinal.angle == 0 || containerPipeFinal.angle == 180) {
-      finalTrayecto = true;
-    }
+
     //add all to container
     containerPipeFinal.add(spritePipeFinal);
 
@@ -579,23 +579,16 @@ export class Game extends Scene {
   }
 
   girarContainer(containerID) {
-    this.tweens.add({
-      targets: containerID,
-      angle: containerID.angle - 90,
-      duration: 500,
-      ease: "Linear",
-      onComplete: function () {
-        // Aquí puedes agregar cualquier lógica adicional que quieras ejecutar después de que se complete la animación
-      },
-    });
-  }
-
-  crearContainer(containerName, Pos1, Pos2, Angle1, Angle2, trayecto) {
-    //containerss
-    containerName = this.add.container(Pos1, Pos2);
-    containerName.angle = 0 /*0,180*/; // Girar el sprite
-    if (containerName.angle == Angle1 || containerName.angle == Angle2) {
-      trayecto = true;
+    if (!tocoBoton) {
+      this.tweens.add({
+        targets: containerID,
+        angle: containerID.angle - 90,
+        duration: 500,
+        ease: "Linear",
+        onComplete: function () {
+          // Aquí puedes agregar cualquier lógica adicional que quieras ejecutar después de que se complete la animación
+        },
+      });
     }
   }
 
