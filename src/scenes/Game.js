@@ -65,11 +65,27 @@ export class Game extends Scene {
     });
     //agua
     //win
-    let waterRunWin = this.sound.add("waterRunWin", {
+    this.waterRunWin = this.sound.add("waterRunWin", {
       loop: true, // Hacer que la música se repita
       volume: 0.5, // Ajustar el volumen si es necesario
     });
+    //loose
+    this.looseWater = this.sound.add("looseWater", {
+      loop: true, // Hacer que la música se repita
+      volume: 0.3, // Ajustar el volumen si es necesario
+    });
 
+    //WIN OR LOOSE
+    //win
+    this.win = this.sound.add("win", {
+      loop: false, // Hacer que la música se repita
+      volume: 0.6, // Ajustar el volumen si es necesario
+    });
+    //lose
+    this.loose = this.sound.add("loose", {
+      loop: false, // Hacer que la música se repita
+      volume: 0.6, // Ajustar el volumen si es necesario
+    });
     ////////////////////////// PIPES /////////////////////////////
     // pipes
     //
@@ -1430,10 +1446,13 @@ export class Game extends Scene {
     }
     if (LlegoTrayectoFinal) {
       this.water.setVisible(true);
-      waterRunWin.play();
+      this.waterRunWin.play();
+
       this.grifo.anims.play("open");
       gameOver = true;
       LlegoTrayectoFinal = false;
+    } else {
+      this.looseWater.play();
     }
   }
   //////////////////////////////////////////////////// UPDATE //////////////////////////////////////////////////
@@ -1452,12 +1471,17 @@ export class Game extends Scene {
     if (!VicLoose) {
       this.textoCTA.setText("¡HAS PERDIDO!");
       this.textoCTA.setStyle({ fontSize: "40px" });
+      this.loose.play();
+    } else {
+      this.win.play();
     }
     this.textoCTA.setVisible(true);
     this.CTAPhoto.setVisible(true);
     this.botonCTA.setVisible(true);
-    this.time.delayedCall(4000, () => {
+    this.time.delayedCall(5000, () => {
       this.musicBack.stop();
+      this.waterRunWin.stop();
+      this.looseWater.stop();
       gameOver = false;
       // Cambiar a la escena de Gameover y pasar la puntuación
       this.scene.start("GameOver", {
