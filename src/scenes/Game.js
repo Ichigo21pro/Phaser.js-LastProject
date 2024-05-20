@@ -48,16 +48,28 @@ export class Game extends Scene {
       .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
     //////////////////////// MUSIC /////////////////////////
     // Reproducir la música de fondo
-    let musicBack = this.sound.add("BackGroundMusicGame", {
+    this.musicBack = this.sound.add("BackGroundMusicGame", {
       loop: true, // Hacer que la música se repita
       volume: 0.1, // Ajustar el volumen si es necesario
     });
-    musicBack.play();
-
+    this.musicBack.play();
+    //botones
     let musicButoon = this.sound.add("buttonSound", {
       loop: false, // Hacer que la música se repita
       volume: 0.3, // Ajustar el volumen si es necesario
     });
+    //cañerias / pipe
+    this.pipeSound = this.sound.add("pipeMove", {
+      loop: false, // Hacer que la música se repita
+      volume: 0.8, // Ajustar el volumen si es necesario
+    });
+    //agua
+    //win
+    let waterRunWin = this.sound.add("waterRunWin", {
+      loop: true, // Hacer que la música se repita
+      volume: 0.5, // Ajustar el volumen si es necesario
+    });
+
     ////////////////////////// PIPES /////////////////////////////
     // pipes
     //
@@ -540,6 +552,7 @@ export class Game extends Scene {
       repeat: -1, // -1 para repetir indefinidamente
     });
     this.water.anims.play("corriente");
+
     this.water.setScale(0.25);
     this.water.setVisible(false);
 
@@ -697,6 +710,7 @@ export class Game extends Scene {
   }
 
   girarContainer(containerID) {
+    this.pipeSound.play();
     if (!tocoBoton && !animacionEnCurso) {
       animacionEnCurso = true; // Establecer la bandera en true al iniciar la animación
       this.tweens.add({
@@ -1416,6 +1430,7 @@ export class Game extends Scene {
     }
     if (LlegoTrayectoFinal) {
       this.water.setVisible(true);
+      waterRunWin.play();
       this.grifo.anims.play("open");
       gameOver = true;
       LlegoTrayectoFinal = false;
@@ -1442,6 +1457,7 @@ export class Game extends Scene {
     this.CTAPhoto.setVisible(true);
     this.botonCTA.setVisible(true);
     this.time.delayedCall(4000, () => {
+      this.musicBack.stop();
       gameOver = false;
       // Cambiar a la escena de Gameover y pasar la puntuación
       this.scene.start("GameOver", {
