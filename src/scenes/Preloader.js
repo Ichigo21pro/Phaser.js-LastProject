@@ -6,9 +6,6 @@ export class Preloader extends Scene {
   }
 
   init() {
-    //  We loaded this image in our Boot Scene, so we can display it here
-    this.add.image(512, 384, "background");
-
     //  A simple progress bar. This is the outline of the bar.
     this.add.rectangle(512, 384, 468, 32).setStrokeStyle(1, 0xffffff);
 
@@ -34,6 +31,9 @@ export class Preloader extends Scene {
 
     //this.load.image('logo', 'logo.png');
 
+    this.load.image("yellowBack", "yellowBackgroung.png");
+    this.load.image("tryButtom", "tryButtom.png");
+    this.load.image("camion", "furgonJumbo.png");
     this.load.image("sky", "sky.png");
     this.load.image("gameLogo", "LogoGame.png");
     this.load.image("gameBackGround", "BackGroundGame.png");
@@ -60,6 +60,9 @@ export class Preloader extends Scene {
       frameWidth: 619,
       frameHeight: 598,
     });
+
+    this.load.audio("backgroundMusicIntro", "IntroMusic.mp3"); // Cargar la música
+    this.load.audio("buttonSound", "buttonSoundUI.mp3");
     // this.load.spritesheet('explocion', 'explosion_scaled_down.png', { frameWidth: 36, frameHeight: 36 });
     // this.load.spritesheet('explocion2', 'secondBomb.png', { frameWidth: 80, frameHeight: 80 });
     // this.load.atlas('atlas', 'atlas.png', 'atlas.json');
