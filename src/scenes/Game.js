@@ -46,6 +46,18 @@ export class Game extends Scene {
       .image(0, 0, "gameBackGround")
       .setOrigin(0, 0)
       .setDisplaySize(this.cameras.main.width, this.cameras.main.height);
+    //////////////////////// MUSIC /////////////////////////
+    // Reproducir la música de fondo
+    let musicBack = this.sound.add("BackGroundMusicGame", {
+      loop: true, // Hacer que la música se repita
+      volume: 0.1, // Ajustar el volumen si es necesario
+    });
+    musicBack.play();
+
+    let musicButoon = this.sound.add("buttonSound", {
+      loop: false, // Hacer que la música se repita
+      volume: 0.3, // Ajustar el volumen si es necesario
+    });
     ////////////////////////// PIPES /////////////////////////////
     // pipes
     //
@@ -487,6 +499,7 @@ export class Game extends Scene {
     // Agregar evento de clic al botón
     Boton.on("pointerdown", () => {
       if (!tocoBoton) {
+        musicButoon.play();
         seMueveElAgua = true;
         // Escalar hacia arriba con una animación
         this.tweens.add({
@@ -604,6 +617,7 @@ export class Game extends Scene {
 
     // Agregar evento de clic al botón
     this.botonCTA.on("pointerdown", () => {
+      musicButoon.play();
       // Escalar hacia arriba con una animación
       this.tweens.add({
         targets: this.botonCTA,
@@ -615,7 +629,7 @@ export class Game extends Scene {
       });
 
       // Redirigir a la URL deseada
-      this.time.delayedCall(1500, () => {
+      this.time.delayedCall(2000, () => {
         window.location.href = "https://www.desatascosjumbo.com/";
       });
     });

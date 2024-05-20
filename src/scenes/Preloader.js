@@ -63,6 +63,7 @@ export class Preloader extends Scene {
 
     this.load.audio("backgroundMusicIntro", "IntroMusic.mp3"); // Cargar la música
     this.load.audio("buttonSound", "buttonSoundUI.mp3");
+    this.load.audio("BackGroundMusicGame", "gameMusic.mp3");
     // this.load.spritesheet('explocion', 'explosion_scaled_down.png', { frameWidth: 36, frameHeight: 36 });
     // this.load.spritesheet('explocion2', 'secondBomb.png', { frameWidth: 80, frameHeight: 80 });
     // this.load.atlas('atlas', 'atlas.png', 'atlas.json');
