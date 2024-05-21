@@ -15,7 +15,12 @@ export class GameOver extends Scene {
       loop: false, // Hacer que la música se repita
       volume: 0.3, // Ajustar el volumen si es necesario
     });
-
+    // Reproducir la música de fondo
+    let music = this.sound.add("backgroundMusicIntro", {
+      loop: true, // Hacer que la música se repita
+      volume: 0.1, // Ajustar el volumen si es necesario
+    });
+    music.play();
     //camiones
     var camion = this.add.image(0, 0, "camion");
     camion.setScale(2.3);
@@ -41,7 +46,7 @@ export class GameOver extends Scene {
         });
         // Redirigir a la URL deseada
         this.animacionIrse();
-        this.time.delayedCall(4000, () => {
+        this.time.delayedCall(3500, () => {
           window.location.href = "https://www.desatascosjumbo.com/";
         });
       },
