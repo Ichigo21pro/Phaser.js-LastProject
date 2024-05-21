@@ -637,6 +637,17 @@ export class Game extends Scene {
     this.botonCTA.setScale(0.135);
     this.botonCTA.setInteractive();
 
+    // Crear texto sobre el botón
+    this.textButtom = this.add
+      .text(this.botonCTA.x, this.botonCTA.y, "PLAY", {
+        fontFamily: "Modak", // Cambia esto a la familia de fuentes que desees
+        fontSize: "30px",
+        color: "#ffffff",
+        align: "center",
+      })
+      .setOrigin(0.5, 0.5);
+    this.textButtom.setVisible(false);
+
     // Crear una variable de texto y añadirla a la escena
     this.textoCTA = this.add.text(344, 210, "¡HAS GANADO!", {
       fill: "#ffffff",
@@ -704,6 +715,24 @@ export class Game extends Scene {
       duration: 500,
       ease: "Sine.easeInOut",
     });
+    // Crear el texto
+    const tutorialText = this.add
+      .text(720, 160, "Click on the highlighted \n area to rotate the pipe", {
+        font: "24px Arial",
+        fill: "#ffffff",
+      })
+      .setOrigin(0.5);
+    const tutorialText2 = this.add
+      .text(
+        750,
+        350,
+        "Connect all the pipes to \n prevent leaks and ensure the \n water reaches its destination\n properly",
+        {
+          font: "24px Arial",
+          fill: "#ffffff",
+        }
+      )
+      .setOrigin(0.5);
 
     // Función para destruir la máscara y el sprite
     const destruirTutorial = () => {
@@ -715,6 +744,12 @@ export class Game extends Scene {
       }
       if (pointerSprite && pointerSprite.active) {
         pointerSprite.destroy();
+      }
+      if (tutorialText && tutorialText.active) {
+        tutorialText.destroy();
+      }
+      if (tutorialText2 && tutorialText2.active) {
+        tutorialText2.destroy();
       }
     };
 
@@ -1478,6 +1513,7 @@ export class Game extends Scene {
     this.textoCTA.setVisible(true);
     this.CTAPhoto.setVisible(true);
     this.botonCTA.setVisible(true);
+    this.textButtom.setVisible(true);
     this.time.delayedCall(5000, () => {
       this.musicBack.stop();
       this.waterRunWin.stop();

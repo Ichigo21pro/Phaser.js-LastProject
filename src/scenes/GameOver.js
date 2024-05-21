@@ -27,6 +27,15 @@ export class GameOver extends Scene {
     //boton
     var playbuttom = this.add.image(190, 0, "botonPLAY");
     playbuttom.setScale(0.11);
+
+    var textButtom = this.add
+      .text(playbuttom.x, playbuttom.y, "PLAY", {
+        fontFamily: "Modak", // Cambia esto a la familia de fuentes que desees
+        fontSize: "30px",
+        color: "#ffffff",
+        align: "center",
+      })
+      .setOrigin(0.5, 0.5);
     // Habilitar la interactividad en el botón playbuttom
     playbuttom.setInteractive();
 
@@ -46,7 +55,7 @@ export class GameOver extends Scene {
         });
         // Redirigir a la URL deseada
         this.animacionIrse();
-        this.time.delayedCall(3500, () => {
+        this.time.delayedCall(3000, () => {
           window.location.href = "https://www.desatascosjumbo.com/";
         });
       },
@@ -59,6 +68,7 @@ export class GameOver extends Scene {
     this.container = this.add.container(1500, 400);
     this.container.add(camion); // Agregar primero el camión
     this.container.add(playbuttom); // Agregar después el botón para que quede delante del camión
+    this.container.add(textButtom);
     camion.setDepth(0);
     playbuttom.setDepth(1);
 

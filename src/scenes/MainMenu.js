@@ -59,7 +59,7 @@ export class MainMenu extends Scene {
     });
 
     ///////////////// BOTONES //////////////////
-    var tryButtom = this.add.image(530, 420, "tryButtom");
+    var tryButtom = this.add.image(530, 420, "botonPLAY");
     tryButtom.setScale(0.15);
     // Habilitar la interactividad en el botón tryButtom
     tryButtom.setInteractive();
@@ -74,6 +74,15 @@ export class MainMenu extends Scene {
       yoyo: true,
       repeat: -1,
     });
+    // Crear texto sobre el botón
+    this.add
+      .text(tryButtom.x, tryButtom.y, "TRY GAME", {
+        fontFamily: "Modak", // Cambia esto a la familia de fuentes que desees
+        fontSize: "30px",
+        color: "#ffffff",
+        align: "center",
+      })
+      .setOrigin(0.5, 0.5);
 
     // Agregar evento de clic para tryButtom
     tryButtom.on(
@@ -102,6 +111,16 @@ export class MainMenu extends Scene {
     playbuttom.setScale(0.15);
     // Habilitar la interactividad en el botón playbuttom
     playbuttom.setInteractive();
+
+    // Crear texto sobre el botón
+    this.add
+      .text(playbuttom.x, playbuttom.y, "PLAY", {
+        fontFamily: "Modak", // Cambia esto a la familia de fuentes que desees
+        fontSize: "30px",
+        color: "#ffffff",
+        align: "center",
+      })
+      .setOrigin(0.5, 0.5);
 
     // Agregar evento de clic para playbuttom
     playbuttom.on(

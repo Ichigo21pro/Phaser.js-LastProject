@@ -18,7 +18,7 @@ export class Preloader extends Scene {
       bar.width = 4 + 460 * progress;
     });
     // Custom Webfonts
-    this.fonts = ["Madimi One"];
+    this.fonts = ["Modak"];
     // Workaround for Phaser 3 not loading fonts until used
     this.fonts.forEach((font) => {
       this.add.text(0, 0, "", { fontFamily: font });
@@ -43,7 +43,7 @@ export class Preloader extends Scene {
     this.load.image("pipe_curvo", "pipe/14.png");
     this.load.image("pipe_3", "pipe/6.png");
     this.load.image("boton", "buttom.png");
-    this.load.image("botonPLAY", "buttomPlayNow.png");
+    this.load.image("botonPLAY", "buttomPlay.png");
     this.load.image("handPointer", "handPointer.png");
     this.load.image("CTAPhoto", "CTAPhoto.png");
 
