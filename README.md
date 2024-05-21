@@ -22,5 +22,6 @@ pueden ser utilizados para mejorar la visibilidad y el reconocimiento de una mar
 
 
 -----------------------------------------------------
-use : npm install
-      npm run dev
+use :"npm install" and "npm run dev"
+
+https://phaser-js-last-project.vercel.app/
