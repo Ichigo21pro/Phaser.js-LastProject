@@ -57,8 +57,8 @@ export class Preloader extends Scene {
     });
 
     this.load.spritesheet("grifo", "grifo.png", {
-      frameWidth: 619,
-      frameHeight: 598,
+      frameWidth: 154.3,
+      frameHeight: 149,
     });
 
     this.load.audio("backgroundMusicIntro", "IntroMusic.mp3"); // Cargar la música

@@ -521,7 +521,7 @@ export class Game extends Scene {
 
     // boton
     const Boton = this.add.sprite(750, 250, "boton");
-    Boton.setScale(0.6);
+    Boton.setScale(0.1);
     Boton.setInteractive();
 
     // Agregar evento de clic al botón
@@ -532,8 +532,8 @@ export class Game extends Scene {
         // Escalar hacia arriba con una animación
         this.tweens.add({
           targets: Boton,
-          scaleX: 0.7,
-          scaleY: 0.7,
+          scaleX: 0.2,
+          scaleY: 0.2,
           duration: 150,
           ease: "Linear",
           yoyo: true, // Hacer que el botón vuelva a su escala original después de agrandarse
@@ -598,7 +598,7 @@ export class Game extends Scene {
     ///////////////////////// GRIFO /////////////////////////////
     // Crear un sprite usando el sprite sheet
     this.grifo = this.add.sprite(750, 565, "grifo"); // Posición inicial del sprite
-    this.grifo.setScale(0.2); // Reducir el tamaño del grifo
+    this.grifo.setScale(0.8); // Reducir el tamaño del grifo
 
     // Definir una animación del grifo
     this.anims.create({
@@ -608,7 +608,7 @@ export class Game extends Scene {
         end: 2,
       }), // Cambia estos valores según tu sprite sheet
       frameRate: 10, // Velocidad de la animación
-      repeat: -1, // -1 para repetir indefinidamente
+      repeat: 4, // -1 para repetir indefinidamente
     });
 
     //////////////////////// BAÑERA /////////////////////////////
@@ -618,7 +618,7 @@ export class Game extends Scene {
       this.grifo.y + 180,
       "bañera"
     );
-    spriteBañera.setScale(0.2);
+    spriteBañera.setScale(1);
 
     ///////////////////////   TUTORIAL   /////////////////////////
 
@@ -649,9 +649,9 @@ export class Game extends Scene {
     this.textButtom.setVisible(false);
 
     // Crear una variable de texto y añadirla a la escena
-    this.textoCTA = this.add.text(344, 210, "¡HAS GANADO!", {
+    this.textoCTA = this.add.text(344, 210, "¡You have won!", {
       fill: "#ffffff",
-      fontSize: "40px",
+      fontSize: "30px",
       fontStyle: "bold",
     });
 
@@ -1484,6 +1484,7 @@ export class Game extends Scene {
       this.waterRunWin.play();
 
       this.grifo.anims.play("open");
+
       gameOver = true;
       LlegoTrayectoFinal = false;
     } else {
@@ -1504,7 +1505,7 @@ export class Game extends Scene {
       VicLoose = false;
     }
     if (!VicLoose) {
-      this.textoCTA.setText("¡HAS PERDIDO!");
+      this.textoCTA.setText("¡You have lost!");
       this.textoCTA.setStyle({ fontSize: "40px" });
       this.loose.play();
     } else {

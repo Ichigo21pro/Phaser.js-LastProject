@@ -114,7 +114,7 @@ export class MainMenu extends Scene {
 
     // Crear texto sobre el botón
     this.add
-      .text(playbuttom.x, playbuttom.y, "PLAY", {
+      .text(playbuttom.x, playbuttom.y, "VISIT US", {
         fontFamily: "Modak", // Cambia esto a la familia de fuentes que desees
         fontSize: "30px",
         color: "#ffffff",

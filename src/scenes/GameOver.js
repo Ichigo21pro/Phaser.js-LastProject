@@ -26,10 +26,10 @@ export class GameOver extends Scene {
     camion.setScale(2.3);
     //boton
     var playbuttom = this.add.image(190, 0, "botonPLAY");
-    playbuttom.setScale(0.11);
+    playbuttom.setScale(0.15);
 
     var textButtom = this.add
-      .text(playbuttom.x, playbuttom.y, "PLAY", {
+      .text(playbuttom.x, playbuttom.y, "VISIT US", {
         fontFamily: "Modak", // Cambia esto a la familia de fuentes que desees
         fontSize: "30px",
         color: "#ffffff",
