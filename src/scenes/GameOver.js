@@ -66,9 +66,6 @@ export class GameOver extends Scene {
       ease: "Power1", // El tipo de easing
       duration: 700, // La duración de la animación en milisegundos
       delay: 500, // Retraso antes de que comience la animación (opcional)
-      onComplete: () => {
-        this.animacionEntrar();
-      },
     });
   }
   animacionIrse() {
@@ -78,6 +75,7 @@ export class GameOver extends Scene {
       ease: "Power1", // El tipo de easing
       duration: 800, // La duración de la animación en milisegundos
       delay: 300, // Retraso antes de que comience la animación (opcional)
+      onComplete: () => {},
     });
   }
   animacionEntrar() {

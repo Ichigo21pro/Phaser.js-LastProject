@@ -632,7 +632,7 @@ export class Game extends Scene {
     this.CTAPhoto.setScale(1.8);
     // Crear un botón de texto
     // boton
-    this.botonCTA = this.add.sprite(485, 350, "botonPLAY");
+    this.botonCTA = this.add.sprite(485, 420, "botonPLAY");
 
     this.botonCTA.setScale(0.135);
     this.botonCTA.setInteractive();
